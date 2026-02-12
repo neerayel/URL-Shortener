@@ -1,6 +1,5 @@
 ﻿using Avtobus1ru_Test.MidLogic.Interfaces;
 using Avtobus1ru_Test.MidLogic.Models;
-using Avtobus1ru_Test.Data.Entities;
 using Avtobus1ru_Test.Data.Interfaces;
 
 namespace Avtobus1ru_Test.MidLogic.Services
@@ -13,34 +12,36 @@ namespace Avtobus1ru_Test.MidLogic.Services
             _linkRepository = linkRepository;
         }
 
-        public Task<LinkModel> CreateAsync(LinkModel item)
+        public async Task<LinkModel> CreateAsync(string longURL)
         {
-            throw new NotImplementedException();
+            var newLink = await _linkRepository.CreateAsync( Mapper.NewLink(longURL) );
+            return Mapper.LinkEntityToModel(newLink);
         }
 
-        public Task<List<LinkModel>> GetAllAsync()
+        public async Task<List<LinkModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var links = await _linkRepository.GetAllAsync();
+            return links.Select(Mapper.LinkEntityToModel).ToList();
         }
 
-        public Task<LinkModel> GetByIdAsync(int id)
+        public async Task<LinkModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return Mapper.LinkEntityToModel( await _linkRepository.GetByIdAsync(id) );
         }
 
-        public Task<List<LinkModel>> GetLongFromShortAsync(string shortURL)
+        public async Task<LinkModel> GetLongFromShortAsync(string shortURLkey)
         {
-            throw new NotImplementedException();
+            return Mapper.LinkEntityToModel( await _linkRepository.GetLongFromShortAsync(shortURLkey) );
         }
 
-        public Task UpdateAsync(LinkModel item)
+        public async Task UpdateAsync(LinkModel item)
         {
-            throw new NotImplementedException();
+            await _linkRepository.UpdateAsync(Mapper.LinkModelToEntity(item));
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _linkRepository.DeleteAsync(id);
         }
     }
 }
