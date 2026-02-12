@@ -29,9 +29,9 @@ namespace Avtobus1ru_Test.MidLogic.Services
             return Mapper.LinkEntityToModel( await _linkRepository.GetByIdAsync(id) );
         }
 
-        public async Task<LinkModel> GetLongFromShortAsync(string shortURLkey)
+        public async Task<string> GetLongFromShortAsync(string shortURLkey)
         {
-            return Mapper.LinkEntityToModel( await _linkRepository.GetLongFromShortAsync(shortURLkey) );
+            return (await _linkRepository.GetLongFromShortAsync(shortURLkey)).LongURL;
         }
 
         public async Task UpdateAsync(LinkModel item)

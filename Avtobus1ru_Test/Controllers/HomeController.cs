@@ -1,24 +1,24 @@
-using System.Diagnostics;
-using Avtobus1ru_Test.Data.Interfaces;
+using Avtobus1ru_Test.MidLogic.Interfaces;
 using Avtobus1ru_Test.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Avtobus1ru_Test.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ILinkRepository _linkRepository;
+        private readonly ILinkService _linkService;
 
-        public HomeController(ILogger<HomeController> logger, ILinkRepository linkRepository)
+        public HomeController(ILogger<HomeController> logger, ILinkService linkService)
         {
             _logger = logger;
-            _linkRepository = linkRepository;
+            _linkService = linkService;
         }
 
         public IActionResult Index()
         {
-            var linksData = _linkRepository.GetAllAsync();
+            var linksData = _linkService.GetAllAsync();
             return View(linksData);
         }
 
