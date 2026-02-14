@@ -43,11 +43,6 @@ namespace Avtobus1ru_Test.Data.Repositories
             return await dbContext.Links.FirstOrDefaultAsync(x => x.ShortURLKey == shortURLKey);
         }
 
-        public async Task<List<LinkEntity>> GetShortFromLongAsync(string longURL)
-        {
-            return await dbContext.Links.Where(x => x.LongURL == longURL).ToListAsync();
-        }
-
         public async Task<bool> UpdateAsync(LinkEntity item)
         {
             try

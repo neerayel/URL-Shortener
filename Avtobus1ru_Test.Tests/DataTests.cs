@@ -85,17 +85,6 @@ namespace Avtobus1ru_Test.Tests
         }
 
         [Fact]
-        public async Task GetShortFromLongTest()
-        {
-            var repository = GetRepository(GetDbContext());
-
-            await repository.CreateAsync(testEntity);
-            var result = await repository.GetShortFromLongAsync(testEntity.LongURL);
-
-            Assert.Equal(result, linkEntities);
-        }
-
-        [Fact]
         public async Task UpdateTest()
         {
             var repository = GetRepository(GetDbContext());

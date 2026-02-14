@@ -8,7 +8,6 @@ namespace Avtobus1ru_Test.Data.Interfaces
         Task<List<LinkEntity>> GetAllAsync();
         Task<LinkEntity> GetByIdAsync(int id);
         Task<LinkEntity> GetLongFromShortAsync(string shortURLKey);
-        Task<List<LinkEntity>> GetShortFromLongAsync(string longURL);
         Task<bool> UpdateAsync(LinkEntity item);
         Task<bool> DeleteAsync(int id);
     }
