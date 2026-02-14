@@ -25,6 +25,23 @@
         </div>
     </div>
 
+    @if (ViewBag.PrevOpResult != null)
+    {
+        @if (ViewBag.PrevOpResult)
+        {
+            <div class="container text-center bg-success">
+                <p class="text-light">Successful operation</p>
+            </div>
+        }
+        else
+        {
+            <div class="container text-center bg-danger">
+                <p class="text-dark">Error during operation</p>
+            </div>
+        }
+    }
+    
+
     <div class="container-xxxl container">
         <table class="table table-striped table-hover">
             <thead>
@@ -48,9 +65,18 @@
                                 <input id="LongURL-@linkItem.Id" type="url" class="form-control" name="LongURL" asp-for="@linkItem.LongURL" style="display:none" required />
                             </td>
 
-                            <td><a href="@linkItem.ShortURL">@linkItem.ShortURL</a></td>
-                            <td>@linkItem.CreationDate.ToString()</td>
-                            <td>@linkItem.ClickCount</td>
+                            <td>
+                                <a href="@linkItem.ShortURL">@linkItem.ShortURL</a>
+                                <input name="ShortURLKey" asp-for="@linkItem.ShortURLKey" style="display:none" />
+                            </td>
+                            <td>
+                                @linkItem.CreationDate.ToString()
+                                <input name="CreationDate" asp-for="@linkItem.CreationDate" style="display:none" />
+                            </td>
+                            <td>
+                                @linkItem.ClickCount
+                                <input name="ClickCount" asp-for="@linkItem.ClickCount" style="display:none" />
+                            </td>
 
                             <td>
                             <div class="row">
