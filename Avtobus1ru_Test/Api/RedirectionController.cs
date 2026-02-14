@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LX.TestPad.Api
 {
-    [Route("[controller]")]
+    [Route("r")]
     [ApiController]
-    public class ShortLinkController : ControllerBase
+    public class RedirectionController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ILinkService _linkService;
 
-        public ShortLinkController(ILogger<HomeController> logger, ILinkService linkService)
+        public RedirectionController(ILogger<HomeController> logger, ILinkService linkService)
         {
             _logger = logger;
             _linkService = linkService;
