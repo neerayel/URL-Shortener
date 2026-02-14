@@ -42,18 +42,6 @@ namespace Avtobus1ru_Test.MidLogic.Services
             };
         }
 
-        public static LinkEntity UpdateLink(int id, string longURL)
-        {
-            return new LinkEntity
-            {
-                Id = id,
-                LongURL = longURL,
-                ShortURLKey = IdGenerator(),
-                CreationDate = DateTime.Now,
-                ClickCount = 0,
-            };
-        }
-
 
         public static string IdGenerator()
         {

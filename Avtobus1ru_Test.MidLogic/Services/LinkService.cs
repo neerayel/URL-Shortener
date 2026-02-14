@@ -53,8 +53,6 @@ namespace Avtobus1ru_Test.MidLogic.Services
         {
             if (item == null) return false;
 
-            var newItem = Mapper.UpdateLink(item.Id, item.LongURL);
-
             await _linkRepository.UpdateAsync(Mapper.LinkModelToEntity(item));
             return true;
         }
