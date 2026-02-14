@@ -11,7 +11,7 @@ namespace Avtobus1ru_Test.Data
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
-
+            Database.EnsureCreated();
         }
     }
 }
