@@ -15,10 +15,9 @@ namespace Avtobus1ru_Test.Data.Repositories
 
         public async Task<LinkEntity> CreateAsync(LinkEntity item)
         {
-            await dbContext.Links.AddAsync(item);
-
             try
             {
+                await dbContext.Links.AddAsync(item);
                 await dbContext.SaveChangesAsync();
             }
             catch (Exception e)
@@ -51,11 +50,9 @@ namespace Avtobus1ru_Test.Data.Repositories
 
         public async Task<bool> UpdateAsync(LinkEntity item)
         {
-            dbContext.Links.Update(item);
-
             try
             {
-                await dbContext.SaveChangesAsync();
+                if (await DeleteAsync(item.Id)) await CreateAsync(item);
             }
             catch (Exception e)
             {
@@ -70,9 +67,9 @@ namespace Avtobus1ru_Test.Data.Repositories
             var item = await dbContext.Links.FirstOrDefaultAsync(x => x.Id == id);
             if (item != null)
             {
-                dbContext.Links.Remove(item);
                 try
                 {
+                    dbContext.Links.Remove(item);
                     await dbContext.SaveChangesAsync();
                 }
                 catch (Exception e)
